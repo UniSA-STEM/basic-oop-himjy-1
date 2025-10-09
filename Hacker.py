@@ -27,7 +27,6 @@ class Hacker:
 
     def launch_data_spike(self):
         self.TraceLevel += 1
-        self.rig = Rig(self.data_spike) -= 1
         print(f"Rig trace level: {self.TraceLevel}")
         print("Launching data spike")
 

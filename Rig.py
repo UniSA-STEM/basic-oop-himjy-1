@@ -7,10 +7,11 @@ Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
+
 class Rig:
     def __init__(self):
         self.__name = "Rig"
-        self.__damage = 0
+        self.__damage_counter = 0
         self.__broken_state = False
         self.__storage = 0
         self.__data_spike = 2
@@ -18,7 +19,13 @@ class Rig:
         self.__upgrade_level = 0
 
     def repaired(self):
-        pass
+        if self.DamageCounter == 0 and self.BrokenState == False:
+            print(f"damaged")
+        else:
+            print(f"no repair is needed")
+
+
+
 
     def upgraded(self):
         pass
@@ -35,11 +42,11 @@ class Rig:
     def get_name(self):
         return self.__name
 
-    def get_damage(self):
-        return self.__damage
+    def get_damage_counter(self):
+        return self.__damage_counter
 
-    def set_damage(self, damage):
-        self.__damage = damage
+    def set_damage_counter(self, damage_counter):
+        self.__damage = damage_counter
 
     def get_broken_state(self):
         return self.__broken_state
@@ -57,10 +64,10 @@ class Rig:
         return self.__removeable_drive
 
     def get_upgrade_level(self):
-        return self.
+        return self.__upgrade_level
 
     Name = property(get_name)
-    Damage = property(get_damage, set_damage)
+    DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state)
     Storage = property(get_storage)
     DataSpike = property(get_data_spike, set_data_spike)
