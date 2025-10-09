@@ -19,12 +19,14 @@ class Hacker:
     def acquire_rig(self):
         self.rig = Rig()
         self.CryptoToken -= 1
-        print(f"Rig activation {self.CryptoToken}")
+        print(f"Rig activation")
 
 
     def trace_level(self):
-        trace_level = self.trace_level + 1
-        if trace_level >= 5:
+        self.TraceLevel += 1
+        print(f"Rig trace level: {self.TraceLevel}")
+
+        if self.TraceLevel >= 5:
             print(f"Hacker is exposed")
 
     def launch_data_spike(self):
@@ -56,7 +58,10 @@ class Hacker:
         return self.rig
 
     def get_trace_level(self):
-        return self.trace_level
+        return self.__trace_level
+
+    def set_trace_level(self, trace_level):
+        self.__trace_level = trace_level
 
     def get_inventory(self):
         return self.__inventory
@@ -65,5 +70,5 @@ class Hacker:
     Name = property(get_name)
     CryptoToken = property(get_crypto_token, set_crypto_token)
     Rig = property(get_rig)
-    TraceLevel = property(get_trace_level)
+    TraceLevel = property(get_trace_level, set_trace_level)
     Inventory = property(get_inventory)

@@ -13,3 +13,4 @@ from Asset import Asset
 
 Hacker = Hacker()
 Hacker.acquire_rig()
+Hacker.trace_level()
