@@ -6,14 +6,21 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+from Rig import Rig
 
 class Hacker:
     def __init__(self):
-        self.name = 'Hacker'
-        self.CryptoToken = 1
-        self.rig = 0
-        self.trace_level = 0
-        self.inventory = []
+        self.__name = 'Hacker'
+        self.__crypto_token = 1
+        self.__rig = 0
+        self.__trace_level = 0
+        self.__inventory = []
+
+    def acquire_rig(self):
+        self.rig = Rig()
+        self.crypto_token =-1
+        print(f"Rig activation")
+
 
     def trace_level(self):
         trace_level = self.trace_level + 1
@@ -36,3 +43,24 @@ class Hacker:
         pass
 
 
+    def get_name(self):
+        return self.__name
+
+    def get_crypto_token(self):
+        return self.crypto_token
+
+    def get_rig(self):
+        return self.rig
+
+    def get_trace_level(self):
+        return self.trace_level
+
+    def get_inventory(self):
+        return self.__inventory
+
+    # Properties
+    Name = property(get_name)
+    CryptoToken = property(get_crypto_token)
+    Rig = property(get_rig)
+    TraceLevel = property(get_trace_level)
+    Inventory = property(get_inventory)
