@@ -21,16 +21,14 @@ class Hacker:
         self.CryptoToken -= 1
         print(f"Rig activation")
 
-
     def trace_level(self):
-        self.TraceLevel += 1
-        print(f"Rig trace level: {self.TraceLevel}")
-
-        if self.TraceLevel >= 5:
-            print(f"Hacker is exposed")
+        if self.TraceLevel == 5:
+            print(f"EXPOSED, reduce your trace level")
 
     def launch_data_spike(self):
-        pass
+        self.TraceLevel += 1
+        print(f"Rig trace level: {self.TraceLevel}")
+        print("Launching data spike")
 
 
     def encrypt_assets(self, security_chip):

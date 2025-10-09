@@ -13,4 +13,11 @@ from Asset import Asset
 
 Hacker = Hacker()
 Hacker.acquire_rig()
+Hacker.launch_data_spike()
+Hacker.launch_data_spike()
+Hacker.launch_data_spike()
+Hacker.launch_data_spike()
+Hacker.launch_data_spike()
+
+
 Hacker.trace_level()
