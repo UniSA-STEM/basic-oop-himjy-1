@@ -12,3 +12,4 @@ from Rig import Rig
 from Asset import Asset
 
 Hacker = Hacker()
+Hacker.acquire_rig()

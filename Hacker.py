@@ -21,7 +21,6 @@ class Hacker:
         self.crypto_token =-1
         print(f"Rig activation")
 
-
     def trace_level(self):
         trace_level = self.trace_level + 1
         if trace_level >= 5:
