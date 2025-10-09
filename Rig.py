@@ -1,6 +1,5 @@
 """
 File: Rig.py
-File: Hacker.py
 Description: Rig class
 Author: Jamie Him
 ID: 110375225
