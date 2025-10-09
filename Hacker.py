@@ -1,9 +1,9 @@
 """
 File: Hacker.py
-Description: <A brief description of this Python module.>
+Description: Hacker class
 Author: Jamie Him
 ID: 110375225
-Username: <username>
+Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
@@ -13,9 +13,24 @@ class Hacker:
         self.CryptoToken = 1
         self.rig = 0
         self.trace_level = 0
+        self.inventory = []
 
     def trace_level(self):
         trace_level = self.trace_level + 1
         if trace_level >= 5:
             print(f"Hacker is exposed")
+
+    def launch_data_spike(self):
+
+
+    def encrypt_assets(self, security_chip):
+        self.inventory.append()
+
+
+    def upgrade_rig(self, hardware_patch):
+
+
+    def store(self):
+        self.inventory.append()
+
 
