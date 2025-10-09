@@ -1,8 +1,13 @@
 """
 File: Rig.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+File: Hacker.py
+Description: Rig class
+Author: Jamie Him
+ID: 110375225
+Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+
+class Rig:
+    def __init__(self):
+        self.name = "Rig"

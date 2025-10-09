@@ -21,16 +21,18 @@ class Hacker:
             print(f"Hacker is exposed")
 
     def launch_data_spike(self):
+        pass
 
 
     def encrypt_assets(self, security_chip):
-        self.inventory.append()
+        pass
 
 
     def upgrade_rig(self, hardware_patch):
+        pass
 
 
     def store(self):
-        self.inventory.append()
+        pass
 
 
