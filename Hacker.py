@@ -18,8 +18,9 @@ class Hacker:
 
     def acquire_rig(self):
         self.rig = Rig()
-        self.crypto_token =-1
-        print(f"Rig activation")
+        self.CryptoToken -= 1
+        print(f"Rig activation {self.CryptoToken}")
+
 
     def trace_level(self):
         trace_level = self.trace_level + 1
@@ -46,7 +47,10 @@ class Hacker:
         return self.__name
 
     def get_crypto_token(self):
-        return self.crypto_token
+        return self.__crypto_token
+
+    def set_crypto_token(self, crypto_token):
+        self.__crypto_token = crypto_token
 
     def get_rig(self):
         return self.rig
@@ -59,7 +63,7 @@ class Hacker:
 
     # Properties
     Name = property(get_name)
-    CryptoToken = property(get_crypto_token)
+    CryptoToken = property(get_crypto_token, set_crypto_token)
     Rig = property(get_rig)
     TraceLevel = property(get_trace_level)
     Inventory = property(get_inventory)
