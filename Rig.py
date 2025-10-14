@@ -18,20 +18,32 @@ class Rig:
         self.__removeable_drive = 1
         self.__upgrade_level = 0
 
-    def repaired(self):
+        from Hacker import Hacker
+        self.HackerClass = Hacker
+
+    def repaired(self, token):
+        hacker = self.HackerClass()
         if self.DamageCounter == 0 and self.BrokenState == False:
-            print(f"damaged")
+            token -= hacker.CryptoToken
+            print("repaired")
         else:
-            print(f"no repair is needed")
+            print("no repair is needed")
 
+    def upgraded(self, upgrade):
+        hardware_patch = upgrade + self.UpgradeLevel
+        print(f"Rig has been upgraded with {hardware_patch} hardware patch")
+        return hardware_patch
 
+    def data_spike(self, damaged):
+        if damaged:
+            self.DamageCounter += damaged
+            print(f"Rig has been hit with {self.DamageCounter} data spike")
+            if self.DamageCounter ==4:
+                self.UpgradeLevel += 1
+                print(f"Rig is broken")
 
+        return damaged
 
-    def upgraded(self):
-        pass
-
-    def data_spike(self):
-        pass
 
     def generate_asset(self):
         pass
@@ -46,7 +58,7 @@ class Rig:
         return self.__damage_counter
 
     def set_damage_counter(self, damage_counter):
-        self.__damage = damage_counter
+        self.__damage_counter = damage_counter
 
     def get_broken_state(self):
         return self.__broken_state

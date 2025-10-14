@@ -12,8 +12,8 @@ from Rig import Rig
 from Asset import Asset
 
 
-#    Hacker = Hacker()
-#   Hacker.acquire_rig()
+Hacker = Hacker()
+Hacker.acquire_rig()
 #    Hacker.launch_data_spike()
 #    Hacker.launch_data_spike()
  #   Hacker.launch_data_spike()
@@ -22,4 +22,6 @@ from Asset import Asset
 #Hacker.trace_level()
 
 rig = Rig()
-rig.repaired()
+rig.repaired(0)
+rig.upgraded(1)
+rig.data_spike(3)
