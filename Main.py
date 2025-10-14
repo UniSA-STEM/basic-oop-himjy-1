@@ -25,3 +25,8 @@ rig = Rig()
 rig.repaired(0)
 rig.upgraded(1)
 rig.data_spike(3)
+rig = Rig()
+print(rig)
+
+a = Asset("key", "private key")
+print(a)

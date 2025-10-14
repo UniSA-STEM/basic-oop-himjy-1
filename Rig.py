@@ -6,6 +6,7 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+from sys import dont_write_bytecode
 
 
 class Rig:
@@ -38,10 +39,8 @@ class Rig:
         if damaged:
             self.DamageCounter += damaged
             print(f"Rig has been hit with {self.DamageCounter} data spike")
-            if self.DamageCounter ==4:
-                self.UpgradeLevel += 1
+            if self.DamageCounter >= 2 and self.UpgradeLevel == 0:
                 print(f"Rig is broken")
-
         return damaged
 
 
@@ -50,6 +49,12 @@ class Rig:
 
     def store(self):
         pass
+
+    def __str__(self):
+        if self.UpgradeLevel >= 2:
+            return f"Rig condition is Pristine (Level {self.UpgradeLevel})"
+        else:
+            return f"Rig condition is Broken (Level {self.UpgradeLevel})"
 
     def get_name(self):
         return self.__name
@@ -78,13 +83,16 @@ class Rig:
     def get_upgrade_level(self):
         return self.__upgrade_level
 
+    def set_upgrade_level(self, upgrade_level):
+        self.__upgrade_level = upgrade_level
+
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state)
     Storage = property(get_storage)
     DataSpike = property(get_data_spike, set_data_spike)
     RemoveableDrive = property(get_removeable_drive)
-    UpgradeLevel = property(get_upgrade_level)
+    UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
 
 
 
