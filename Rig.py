@@ -6,7 +6,6 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-from sys import dont_write_bytecode
 
 
 class Rig:
@@ -38,7 +37,9 @@ class Rig:
     def data_spike(self, damaged):
         if damaged:
             self.DamageCounter += damaged
-            print(f"Rig has been hit with {self.DamageCounter} data spike")
+            print(f"Rig has been hit with {damaged} Data Spike!!!\n"
+                  f"Damaged counter increased to {self.DamageCounter}")
+
             if self.DamageCounter >= 2 and self.UpgradeLevel == 0:
                 print(f"Rig is broken")
         return damaged

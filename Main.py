@@ -13,20 +13,28 @@ from Asset import Asset
 
 
 Hacker = Hacker()
-Hacker.acquire_rig()
-#    Hacker.launch_data_spike()
+#Hacker.acquire_rig()
+Hacker.launch_data_spike(2)
+#r = Rig
+#r.data_spike(1,2)
+
+
+
+
 #    Hacker.launch_data_spike()
  #   Hacker.launch_data_spike()
   #  Hacker.launch_data_spike()
    # Hacker.launch_data_spike()
 #Hacker.trace_level()
 
-rig = Rig()
-rig.repaired(0)
-rig.upgraded(1)
-rig.data_spike(3)
-rig = Rig()
-print(rig)
+#rig = Rig()
+#rig.repaired(0)
+#rig.upgraded(1)
+#rig.data_spike(3)
+#rig = Rig()
+#print(rig)
 
-a = Asset("key", "private key")
-print(a)
+#a = Asset("cryptoToken", "h")
+#print(a)
+#a.crypto_token()
+#a.data_spike()

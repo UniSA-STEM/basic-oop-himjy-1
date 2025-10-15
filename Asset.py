@@ -6,6 +6,8 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
+from Rig import Rig
+from Hacker import Hacker
 
 class Asset:
     def __init__(self, name, description):
@@ -14,10 +16,18 @@ class Asset:
         self.__encrypted = False
 
     def crypto_token(self):
-        pass
+        H = Hacker
+        H.CryptoToken = self.__encrypted
+        print(f"Token is {H.CryptoToken}")
+
+        return H
+
 
     def data_spike(self):
-        pass
+        rig = Rig.Name
+        print(rig)
+
+        return rig
 
     def removeable_drive(self):
         pass

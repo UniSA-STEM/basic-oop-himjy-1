@@ -25,10 +25,24 @@ class Hacker:
         if self.TraceLevel == 5:
             print(f"EXPOSED, reduce your trace level")
 
-    def launch_data_spike(self):
-        self.TraceLevel += 1
-        print(f"Rig trace level: {self.TraceLevel}")
-        print("Launching data spike")
+    def launch_data_spike(self, spike):
+        self.rig = Rig()
+
+        if spike:
+            print(f"launching {spike} Data Spikes")
+
+            self.rig.DataSpike -= spike
+            print(f"Remaining Data spike in rig: {self.rig.DataSpike}")
+
+            self.TraceLevel += spike
+            if self.TraceLevel == 5:
+                print(self.TraceLevel)
+
+
+        print(f"Hacker trace level: {self.TraceLevel}")
+
+
+
 
 
     def encrypt_assets(self, security_chip):
