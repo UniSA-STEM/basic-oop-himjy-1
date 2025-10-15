@@ -6,8 +6,6 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-from Rig import Rig
-from Hacker import Hacker
 
 class Asset:
     def __init__(self, name, description):
@@ -15,18 +13,20 @@ class Asset:
         self.__description = description
         self.__encrypted = False
 
-    def crypto_token(self, hacker):
+    def create_crypto_token(self):
+        return Asset("CryptoToken", "Used to acquire or repair rigs.")
 
     def data_spike(self):
+        return Asset("Data Spike","Used in battle.")
 
     def removeable_drive(self):
-        pass
+        return Asset("Removeable Drive", "Found in rigs and used for extraction.")
 
     def security_chip(self):
-        pass
+        return Asset("Security Chip", "Used to encrypt or decrypt data.")
 
     def hardware_patch(self):
-        pass
+        return Asset("Hardware Patch", "Used to upgrade rigs.")
 
     def __str__(self):
         if self.Encrypted:
