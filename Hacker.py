@@ -16,14 +16,27 @@ class Hacker:
         self.__trace_level = 0
         self.__inventory = []
 
-    def acquire_rig(self):
+    def inventory(self):
+        self.__inventory.append(self.CryptoToken)
+        print(f"Inside Inventory: {self.CryptoToken} CryptoToken")
+
+    def acquire_rig(self, token):
         self.rig = Rig()
         self.CryptoToken -= 1
         print(f"Rig activation")
+        print(f"CryptoToken: {self.CryptoToken}")
 
     def trace_level(self):
         if self.TraceLevel == 5:
             print(f"EXPOSED, reduce your trace level")
+
+    def repair(self):
+        rig = Rig()
+        if rig.DamageCounter == 0 and rig.BrokenState == False:
+            self.CryptoToken -= 1
+            print("repaired")
+        else:
+            print("no repair is needed")
 
     def launch_data_spike(self, spike):
         self.rig = Rig()

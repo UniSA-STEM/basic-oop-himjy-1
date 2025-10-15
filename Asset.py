@@ -15,19 +15,9 @@ class Asset:
         self.__description = description
         self.__encrypted = False
 
-    def crypto_token(self):
-        H = Hacker
-        H.CryptoToken = self.__encrypted
-        print(f"Token is {H.CryptoToken}")
-
-        return H
-
+    def crypto_token(self, hacker):
 
     def data_spike(self):
-        rig = Rig.Name
-        print(rig)
-
-        return rig
 
     def removeable_drive(self):
         pass

@@ -13,9 +13,7 @@ class Rig:
         self.__name = "Rig"
         self.__damage_counter = 0
         self.__broken_state = False
-        self.__storage = 0
-        self.__data_spike = 2
-        self.__removeable_drive = 1
+        self.__storage = []
         self.__upgrade_level = 0
 
         from Hacker import Hacker
@@ -24,7 +22,7 @@ class Rig:
     def repaired(self, token):
         hacker = self.HackerClass()
         if self.DamageCounter == 0 and self.BrokenState == False:
-            token -= hacker.CryptoToken
+            token -= hacker.Inventory
             print("repaired")
         else:
             print("no repair is needed")
@@ -91,8 +89,6 @@ class Rig:
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state)
     Storage = property(get_storage)
-    DataSpike = property(get_data_spike, set_data_spike)
-    RemoveableDrive = property(get_removeable_drive)
     UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
 
 
