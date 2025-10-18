@@ -16,11 +16,15 @@ from Asset import Asset
 #asset.Encrypted = False
 #print(asset)
 
+Rig = Rig()
+
+
 Hacker = Hacker()
 Hacker.acquire_rig()
-Hacker.launch_data_spike(5)
+Hacker.launch_data_spike(1)
+Rig.data_spike(1)
 
-
+Hacker.extract_asset()
 
 #    Hacker.launch_data_spike()
  #   Hacker.launch_data_spike()

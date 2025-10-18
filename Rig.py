@@ -34,14 +34,18 @@ class Rig:
         return hardware_patch
 
     def data_spike(self, damaged):
-        if damaged:
-            self.DamageCounter += damaged
-            print(f"Rig has been hit with {damaged} Data Spike!!!\n"
-                  f"Damaged counter increased to {self.DamageCounter}")
+        if damaged <= 0:
+            return False
 
-            if self.DamageCounter >= 2 and self.UpgradeLevel == 0:
-                print(f"Rig is broken")
-        return damaged
+        self.DamageCounter += damaged
+        print(f"Rig has been hit with {damaged} Data Spike!!!\n"
+            f"Damaged counter increased to {self.DamageCounter}")
+
+        if self.DamageCounter >= 2 and self.UpgradeLevel == 0:
+            self.BrokenState = True
+            print(f"Rig is broken")
+
+        return self.BrokenState
 
 
     def generate_asset(self):
@@ -66,6 +70,9 @@ class Rig:
     def get_broken_state(self):
         return self.__broken_state
 
+    def set_broken_state(self, broken_state):
+        self.__broken_state = broken_state
+
     def get_data_spike(self):
         return self.__data_spike
 
@@ -81,6 +88,9 @@ class Rig:
     def get_removable_drive(self):
         return self.__removable_drive
 
+    def set_removable_drive(self, driver):
+        self.__removable_drive = driver
+
     def get_upgrade_level(self):
         return self.__upgrade_level
 
@@ -92,10 +102,10 @@ class Rig:
 
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
-    BrokenState = property(get_broken_state)
+    BrokenState = property(get_broken_state, set_broken_state)
     Storage = property(get_storage)
     DataSpike = property(get_data_spike, set_data_spike)
-    RemovableDrive = property(get_removable_drive)
+    RemovableDrive = property(get_removable_drive, set_removable_drive)
     UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
 
 

@@ -40,21 +40,27 @@ class Hacker:
             print("no repair is needed")
 
     def launch_data_spike(self, spike):
-        if self.rig.DataSpike > 0:
+        if spike:
             self.rig.DataSpike -= spike
-            print(self.rig.DataSpike)
+            print(f"amount of data spike remaining {self.rig.DataSpike}")
+
+    def extract_asset(self):
+        if not Rig.BrokenState:
+            print("Rig is not broken cannot extract")
+
+        elif Rig.BrokenState:
+            print("extracting rig for asset")
 
 
 
 
 
 
-
-
-
-
-    def encrypt_assets(self, security_chip):
+    def encrypt_assets(self, driver):
         pass
+
+
+
 
 
     def upgrade_rig(self, hardware_patch):
