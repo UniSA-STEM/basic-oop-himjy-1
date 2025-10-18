@@ -14,7 +14,12 @@ class Hacker:
         self.__name = 'Hacker'
         self.__rig = 0
         self.__trace_level = 0
-        self.__inventory = [Asset]
+        self.__inventory = []
+        self.__crypto_token = 1
+
+    def retrieve_assets(self, asset):
+        self.Inventory.append(asset)
+        print(self.Inventory)
 
     def acquire_rig(self, token):
         self.rig = Rig()
