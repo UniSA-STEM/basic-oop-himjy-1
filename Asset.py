@@ -1,6 +1,6 @@
 """
 File: Asset.py
-Description: Asset class
+Description: This class represents a digital asset
 Author: Jamie Him
 ID: 110375225
 Username: Himjy003
@@ -14,13 +14,13 @@ class Asset:
         self.__encrypted = False
 
     def create_crypto_token(self):
-        return Asset("CryptoToken", "Used to acquire or repair rigs.")
+        Asset("CryptoToken", "Used to acquire or repair rigs.")
 
     def data_spike(self):
-        return Asset("Data Spike","Used in battle.")
+        Asset("Data Spike","Used in battle.")
 
-    def removeable_drive(self):
-        return Asset("Removeable Drive", "Found in rigs and used for extraction.")
+    def removable_drive(self):
+        return Asset("Removable Drive", "Found in rigs and used for extraction.")
 
     def security_chip(self):
         return Asset("Security Chip", "Used to encrypt or decrypt data.")
@@ -30,9 +30,9 @@ class Asset:
 
     def __str__(self):
         if self.Encrypted:
-            return f"{self.Name} {self.Description} Encrypted"
+            return f"{self.Name}: {self.Description} Encrypted"
         else:
-            return f"{self.Name} {self.Description}"
+            return f"{self.Name}: {self.Description}"
 
     def get_name(self):
         return self.__name

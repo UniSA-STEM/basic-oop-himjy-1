@@ -15,7 +15,14 @@ from Asset import Asset
 
 
 a = Asset("CryptoToken", "Used to acquire or repair rigs")
-a.crypto_token()
+a.create_crypto_token()
+
+token = Asset.create_crypto_token()
+print(token)
+Asset.create_crypto_token()
+
+
+
 
 
 

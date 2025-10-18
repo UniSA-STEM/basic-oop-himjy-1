@@ -6,28 +6,27 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-
+from Asset import Asset
+import random
 
 class Rig:
     def __init__(self):
         self.__name = "Rig"
         self.__damage_counter = 0
         self.__broken_state = False
-        self.__storage = []
         self.__upgrade_level = 0
+        self.__storage = []
 
-        from Hacker import Hacker
-        self.HackerClass = Hacker
+    def storage(self, asset):
+        self.Storage.append(asset)
 
-    def repaired(self, token):
-        hacker = self.HackerClass()
+    def repair(self):
         if self.DamageCounter == 0 and self.BrokenState == False:
-            token -= hacker.Inventory
             print("repaired")
         else:
             print("no repair is needed")
 
-    def upgraded(self, upgrade):
+    def upgrade(self, upgrade):
         hardware_patch = upgrade + self.UpgradeLevel
         print(f"Rig has been upgraded with {hardware_patch} hardware patch")
         return hardware_patch
@@ -46,8 +45,6 @@ class Rig:
     def generate_asset(self):
         pass
 
-    def store(self):
-        pass
 
     def __str__(self):
         if self.UpgradeLevel >= 2:
@@ -67,8 +64,6 @@ class Rig:
     def get_broken_state(self):
         return self.__broken_state
 
-    def get_storage(self):
-        return self.__storage
 
     def get_data_spike(self):
         return self.__data_spike
@@ -85,11 +80,14 @@ class Rig:
     def set_upgrade_level(self, upgrade_level):
         self.__upgrade_level = upgrade_level
 
+    def get_storage(self):
+        return self.__storage
+
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state)
-    Storage = property(get_storage)
     UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
+    Storage = property(get_storage)
 
 
 

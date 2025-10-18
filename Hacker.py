@@ -7,18 +7,14 @@ Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 from Rig import Rig
+from Asset import Asset
 
 class Hacker:
     def __init__(self):
         self.__name = 'Hacker'
-        self.__crypto_token = 1
         self.__rig = 0
         self.__trace_level = 0
-        self.__inventory = []
-
-    def inventory(self):
-        self.__inventory.append(self.CryptoToken)
-        print(f"Inside Inventory: {self.CryptoToken} CryptoToken")
+        self.__inventory = [Asset]
 
     def acquire_rig(self, token):
         self.rig = Rig()
