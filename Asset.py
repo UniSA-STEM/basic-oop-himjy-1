@@ -1,6 +1,6 @@
 """
 File: Asset.py
-Description: This class represents a digital asset
+Description: This class represents a digital asset for the hacker and rig.
 Author: Jamie Him
 ID: 110375225
 Username: Himjy003
@@ -8,32 +8,19 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 class Asset:
-    def __init__(self, name, description):
-        self.__name = name
-        self.__description = description
-        self.__encrypted = False
+    def __init__(self, name, description):          # Asset constructor
+        self.__name = name                          # Private attribute for the asset name
+        self.__description = description            # Private attribute for the asset description
+        self.__encrypted = False                    # Indicates whether the asset is encrypted
 
-    def create_crypto_token(self):
-        Asset("CryptoToken", "Used to acquire or repair rigs.")
-
-    def data_spike(self):
-        Asset("Data Spike","Used in battle.")
-
-    def removable_drive(self):
-        return Asset("Removable Drive", "Found in rigs and used for extraction.")
-
-    def security_chip(self):
-        return Asset("Security Chip", "Used to encrypt or decrypt data.")
-
-    def hardware_patch(self):
-        return Asset("Hardware Patch", "Used to upgrade rigs.")
-
+    # Returns a formatted string containing asset details.
     def __str__(self):
         if self.Encrypted:
             return f"{self.Name}: {self.Description} Encrypted"
         else:
             return f"{self.Name}: {self.Description}"
 
+    # Getters for encapsulated data
     def get_name(self):
         return self.__name
 
@@ -43,9 +30,11 @@ class Asset:
     def get_encrypted(self):
         return self.__encrypted
 
+    # Setter for encryption property
     def set_encrypted(self, encrypted):
         self.__encrypted = encrypted
 
+    # Properties to access private attributes
     Name = property(get_name)
     Description = property(get_description)
     Encrypted = property(get_encrypted, set_encrypted)
