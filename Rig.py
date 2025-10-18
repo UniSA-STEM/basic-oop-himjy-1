@@ -70,7 +70,13 @@ class Rig:
         return self.__data_spike
 
     def set_data_spike(self, data_spike):
-        self.__data_spike = data_spike
+
+        if data_spike > 5:
+            self.__data_spike = 5
+        elif data_spike < 0:
+            self.__data_spike = 0
+        else:
+            self.__data_spike = data_spike
 
     def get_removable_drive(self):
         return self.__removable_drive

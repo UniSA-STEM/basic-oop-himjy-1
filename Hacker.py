@@ -21,11 +21,11 @@ class Hacker:
         self.Inventory.append(asset)
         print(self.Inventory)
 
-    def acquire_rig(self, token):
-        self.rig = Rig()
-        self.CryptoToken -= 1
-        print(f"Rig activation")
-        print(f"CryptoToken: {self.CryptoToken}")
+    def acquire_rig(self):
+        if self.CryptoToken >= 1:
+            self.CryptoToken -= 1
+            self.rig = Rig()
+            print(f"Rig activation")
 
     def trace_level(self):
         if self.TraceLevel == 5:
@@ -40,20 +40,14 @@ class Hacker:
             print("no repair is needed")
 
     def launch_data_spike(self, spike):
-        self.rig = Rig()
-
-        if spike:
-            print(f"launching {spike} Data Spikes")
-
+        if self.rig.DataSpike > 0:
             self.rig.DataSpike -= spike
-            print(f"Remaining Data spike in rig: {self.rig.DataSpike}")
-
-            self.TraceLevel += spike
-            if self.TraceLevel == 5:
-                print(self.TraceLevel)
+            print(self.rig.DataSpike)
 
 
-        print(f"Hacker trace level: {self.TraceLevel}")
+
+
+
 
 
 
@@ -87,7 +81,13 @@ class Hacker:
         return self.__trace_level
 
     def set_trace_level(self, trace_level):
-        self.__trace_level = trace_level
+
+        """
+        Set the trace level.
+        Caps the value at 5 so it cannot exceed the maximum.
+        """
+        if trace_level == 5:
+            self.__trace_level = 5
 
     def get_inventory(self):
         return self.__inventory

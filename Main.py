@@ -12,19 +12,13 @@ from Rig import Rig
 from Asset import Asset
 
 
+#asset = Asset("CryptoToken", "Used to acquire or repair rigs.")
+#asset.Encrypted = False
+#print(asset)
 
-
-a = Asset("CryptoToken", "Used to acquire or repair rigs")
-a.create_crypto_token()
-
-token = Asset.create_crypto_token()
-print(token)
-Asset.create_crypto_token()
-
-
-
-
-
+Hacker = Hacker()
+Hacker.acquire_rig()
+Hacker.launch_data_spike(5)
 
 
 
