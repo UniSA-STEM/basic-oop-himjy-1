@@ -11,11 +11,13 @@ import random
 
 class Rig:
     def __init__(self):
-        self.__name = "Rig"
+        self.__name = "RB26DETT"
         self.__damage_counter = 0
         self.__broken_state = False
-        self.__upgrade_level = 0
         self.__storage = []
+        self.__data_spike = 2
+        self.__removable_drive = 1
+        self.__upgrade_level = 0
 
     def storage(self, asset):
         self.Storage.append(asset)
@@ -64,15 +66,14 @@ class Rig:
     def get_broken_state(self):
         return self.__broken_state
 
-
     def get_data_spike(self):
         return self.__data_spike
 
     def set_data_spike(self, data_spike):
         self.__data_spike = data_spike
 
-    def get_removeable_drive(self):
-        return self.__removeable_drive
+    def get_removable_drive(self):
+        return self.__removable_drive
 
     def get_upgrade_level(self):
         return self.__upgrade_level
@@ -86,8 +87,11 @@ class Rig:
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state)
-    UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
     Storage = property(get_storage)
+    DataSpike = property(get_data_spike, set_data_spike)
+    RemovableDrive = property(get_removable_drive)
+    UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
+
 
 
 
