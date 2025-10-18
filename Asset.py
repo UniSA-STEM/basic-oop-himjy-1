@@ -6,7 +6,7 @@ ID: 110375225
 Username: Himjy003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-
+here
 class Asset:
     def __init__(self, name, description):          # Asset constructor
         self.__name = name                          # Private attribute for the asset name
