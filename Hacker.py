@@ -18,8 +18,11 @@ class Hacker:
         self.__crypto_token = 1
 
     def retrieve_assets(self, asset):
-        self.Inventory.append(asset)
-        print(self.Inventory)
+        if isinstance(asset, Asset): # Checks to see if it's an asset
+            self.Inventory.append(asset)
+            print(f"asset added: {asset}")
+        else:
+            print(f"must be an asset")
 
     def acquire_rig(self):
         if self.CryptoToken >= 1:
@@ -44,13 +47,20 @@ class Hacker:
             self.rig.DataSpike -= spike
             print(f"amount of data spike remaining {self.rig.DataSpike}")
 
-    def extract_asset(self):
+    def extract_asset(self, driver):
         if not Rig.BrokenState:
             print("Rig is not broken cannot extract")
 
         elif Rig.BrokenState:
             print("extracting rig for asset")
 
+            self.Rig.RemovableDrive -= driver
+            print(f"amount of removable driver: {self.Rig.RemovableDrive}")
+
+            extract = self.Rig.Storage[0]
+            self.Rig.Storage.remove(extract)
+            self.retrieve_assets(extract)
+        return extract
 
 
 

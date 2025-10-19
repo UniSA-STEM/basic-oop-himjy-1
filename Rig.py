@@ -9,7 +9,7 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 from Asset import Asset
 import random
 
-class Rig:
+class Rig():
     def __init__(self):
         self.__name = "RB26DETT"
         self.__damage_counter = 0
@@ -100,10 +100,15 @@ class Rig:
     def get_storage(self):
         return self.__storage
 
+    def set_storage(self, asset):
+        self.__storage.append(asset)
+
+
+
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state, set_broken_state)
-    Storage = property(get_storage)
+    Storage = property(get_storage, set_storage)
     DataSpike = property(get_data_spike, set_data_spike)
     RemovableDrive = property(get_removable_drive, set_removable_drive)
     UpgradeLevel = property(get_upgrade_level, set_upgrade_level)

@@ -11,20 +11,24 @@ from Hacker import Hacker
 from Rig import Rig
 from Asset import Asset
 
-
-#asset = Asset("CryptoToken", "Used to acquire or repair rigs.")
-#asset.Encrypted = False
-#print(asset)
-
-Rig = Rig()
-
-
 Hacker = Hacker()
-Hacker.acquire_rig()
-Hacker.launch_data_spike(1)
-Rig.data_spike(1)
 
-Hacker.extract_asset()
+a1 = Asset("CryptoToken", "Used to acquire or repair rigs")
+a2 = Asset("SecretFile", "Top secret")
+
+assets = [a1, a2]
+Hacker.retrieve_assets(assets[1])
+
+
+rig = Rig()
+rig.Storage = a1
+
+
+Hacker.acquire_rig()
+Hacker.launch_data_spike(5)
+rig.data_spike(2)
+
+
 
 #    Hacker.launch_data_spike()
  #   Hacker.launch_data_spike()
