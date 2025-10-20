@@ -64,14 +64,22 @@ class Rig:
         elif self.UpgradeLevel == 1 and self.DamageCounter >= 4:
             self.BrokenState = True
             print("Rig is broken")
-        elif self.UpgradeLevel >= 2:
-            print(f"Rig level is {self.UpgradeLevel}, damage absorbed")
-
         return self.BrokenState
 
 
-    def generate_asset(self):
-        pass
+    def generate_asset(self, asset):
+        available_assets = [
+            ("Security Chip", "Used to encrypt assets."),
+            ("Hardware Patch", "Used to upgrade rigs."),
+            ("CryptoToken", "Used to acquire or repair rigs."),
+            ("Removable Drive", "Used to extract assets.")
+        ]
+
+        name, description = random.choice(available_assets)
+        generated_asset = Asset(name, description)
+        self.Storage.append(generated_asset)
+        print(f"{generated_asset}")
+        return
 
 
     def __str__(self):
