@@ -45,7 +45,7 @@ class Rig:
             if asset.AssetName == "Hardware Patch":
                 hacker.Inventory.remove(asset)
                 self.UpgradeLevel += 1
-                print(f"Rig Upgraded")
+                print(f"Rig Upgraded {self.UpgradeLevel}\n")
                 return
 
             print("No Hardware Patch found in hacker inventory")
@@ -54,18 +54,18 @@ class Rig:
         if damage <= 0:
             return False
 
-        if self.UpgradeLevel == 0:
-            self.DamageCounter += damage
-            print(f"Rig has been hit with {damage} Data Spike!!!\n"
-                f"Damaged counter increased to {self.DamageCounter}")
-            if self.DamageCounter == 2 and self.UpgradeLevel == 0:
-                self.BrokenState = True
-                print(f"Rig is broken")
-                return
+        self.DamageCounter += damage
+        print(f"Rig has been hit with {damage} Data Spike!!!\n"
+              f"Damage counter increased to {self.DamageCounter}")
 
-            if self.UpgradeLevel >= 1:
-                print(f"Rig level is {self.UpgradeLevel}")
-                self.DamageCounter += damage
+        if self.UpgradeLevel == 0 and self.DamageCounter >= 2:
+            self.BrokenState = True
+            print("Rig is broken")
+        elif self.UpgradeLevel == 1 and self.DamageCounter >= 4:
+            self.BrokenState = True
+            print("Rig is broken")
+        elif self.UpgradeLevel >= 2:
+            print(f"Rig level is {self.UpgradeLevel}, damage absorbed")
 
         return self.BrokenState
 
