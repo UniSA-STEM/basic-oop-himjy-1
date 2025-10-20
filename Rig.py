@@ -97,15 +97,21 @@ class Rig:
                 return
         print(f"{asset.AssetName} not encrypted")
 
-    def rig_condition(self):
-        pass
-
+    def condition(self):
+        if self.UpgradeLevel >= 2:
+            print(f"Rig condition is Pristine (Level {self.UpgradeLevel})")
+        else:
+            print(f"Rig condition is Broken (Level {self.UpgradeLevel})")
 
     def __str__(self):
-        if self.UpgradeLevel >= 2:
-            return f"Rig condition is Pristine (Level {self.UpgradeLevel})"
-        else:
-            return f"Rig condition is Broken (Level {self.UpgradeLevel})"
+        stored_assets = []
+        for asset in self.Storage:
+            stored_assets.append(str(asset))
+
+        return (f"Rig Name: {self.Name}\n"
+                f"Condition: {self.UpgradeLevel}\n"
+                f"Upgrade Level: {self.UpgradeLevel}\n"
+                f"Stored Assets: {stored_assets}\n")
 
     def get_name(self):
         return self.__name
