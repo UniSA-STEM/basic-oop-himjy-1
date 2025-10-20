@@ -81,7 +81,7 @@ class Rig:
         print(f"{generated_asset}")
         return
 
-    def transfer(self, asset, decrypt):
+    def decrypt(self, asset, decrypt):
         for item in self.Storage:
             if item.AssetName == "Security Chip":
                 self.Storage.remove(item)
@@ -92,8 +92,10 @@ class Rig:
                 return
 
             elif asset.Encrypted and decrypt:
-                asset.Encrypted = True
-                print(f"{asset.AssetName} has been encrypted.")
+                asset.Encrypted = False
+                print(f"{asset.AssetName} has been decrypted.")
+                return
+        print(f"{asset.AssetName} not encrypted")
 
     def rig_condition(self):
         pass
