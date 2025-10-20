@@ -39,14 +39,6 @@ class Hacker:
         if self.TraceLevel == 5:
             print(f"EXPOSED, reduce your trace level")
 
-    def repair(self):
-        rig = Rig()
-        if rig.DamageCounter == 0 and rig.BrokenState == False:
-            self.CryptoToken -= 1
-            print("repaired")
-        else:
-            print("no repair is needed")
-
     def launch_data_spike(self, spike):
         if spike:
             self.rig.DataSpike -= spike
@@ -54,7 +46,7 @@ class Hacker:
             print(f"amount of data spike remaining {self.rig.DataSpike}")
 
             if spike >= 2:
-                self.rig.BrokenState == True
+                self.rig.BrokenState = True
 
     def extract_asset(self):
         if not self.rig.BrokenState:
@@ -68,8 +60,20 @@ class Hacker:
             for asset in self.rig.Storage:
                 print(f"transferring {asset} from rig storage")
 
-    def encrypt_assets(self, asset):
-        pass
+    def encrypt_assets(self, asset_name):
+        for item in self.Inventory:
+            if item.AssetName == "Security Chip":
+                self.Inventory.remove(item)
+
+                for asset in self.Inventory:
+                    if asset.AssetName == asset_name:
+                        asset.Encrypted = True
+                        print(f"{asset_name} Encrypted")
+                        return
+
+                print(f"{asset_name} not found in inventory")
+                return
+        print("requires security chip")
 
     def upgrade_rig(self):
         if self.rig:
@@ -79,9 +83,11 @@ class Hacker:
 
                     self.rig.UpgradeLevel += 1
                     self.rig.Storage.extend("")
-                    print(f"Rig level increased to {self.rig.UpgradeLevel}\n"
-                          f"Storage: increased")
+                    print(f"Consumed: {asset.AssetName}")
+                    print(f"Rig level: {self.rig.UpgradeLevel}\n"
+                          f"Storage increased")
                     return
+            print(f"requires hardware patch to upgrade the rig")
 
     def search_inventory(self, asset_name):
         for asset in self.Inventory:

@@ -24,19 +24,24 @@ HardwarePatch = Asset("Hardware Patch", "Used to upgrade rigs.")
 assets = [CryptoToken, DataSpike, RemovableDrive, SecurityChip, HardwarePatch]
 hacker.retrieve_assets(CryptoToken)
 hacker.retrieve_assets(DataSpike)
+hacker.retrieve_assets(HardwarePatch)
+hacker.retrieve_assets(SecurityChip)
+
+
 
 rig.storage(DataSpike)
-
-
-
 
 hacker.acquire_rig(rig)
 hacker.launch_data_spike(2)
 hacker.extract_asset()
-hacker.upgrade_rig(1)
 hacker.search_inventory("CryptoToken")
 hacker.search_inventory("Data Spike")
-print(hacker)
+hacker.search_inventory("Hardware Patch")
+hacker.search_inventory("Security Chip")
 hacker.upgrade_rig()
+hacker.encrypt_assets("CryptoToken")
+
+for asset in hacker.Inventory:
+    print(asset)
 
 
