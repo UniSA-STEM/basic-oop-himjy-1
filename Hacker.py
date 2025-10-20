@@ -35,7 +35,10 @@ class Hacker:
             print(f"Rig activation")
             print(f"CryptoToken remaining: {self.CryptoToken}")
 
-    def trace_level(self):
+    def trace_level(self, asset):
+        if self.Inventory.append(asset):
+            self.__trace_level += 1
+            print(self.TraceLevel)
         if self.TraceLevel == 5:
             print(f"EXPOSED, reduce your trace level")
 
@@ -97,7 +100,19 @@ class Hacker:
         print(f"asset not found in hacker inventory: {asset_name}.")
 
     def __str__(self):
-        return f"{self.Name} {self.rig.Name} {self.TraceLevel} {self.Inventory}"
+        if self.Rig:
+            rig_name = self.rig.Name
+        else:
+            rig_name = "Acquire a rig"
+
+        inventory_str = []
+        for asset in self.Inventory:
+            inventory_str.append(str(asset))
+
+        return (f"Name: {self.Name}\n"
+                f"Rig name: {rig_name}\n"
+                f"Trace level: {self.TraceLevel}\n"
+                f"Inventory: {inventory_str}")
 
     def get_name(self):
         return self.__name

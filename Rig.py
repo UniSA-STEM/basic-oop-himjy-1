@@ -9,7 +9,9 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 from Asset import Asset
 import random
 
-class Rig():
+
+
+class Rig:
     def __init__(self):
         self.__name = "RB26DETT"
         self.__damage_counter = 0
@@ -26,28 +28,44 @@ class Rig():
         self.__storage.append(asset)
         print(f"{asset}")
 
-    def repair(self):
-        if self.DamageCounter == 0 and self.BrokenState == False:
-            print("repaired")
-        else:
-            print("no repair is needed")
+    def repair(self, token):
+        for asset in self.Storage:
+            if asset.AssetName == "CryptoToken":
+                self.Storage.remove(asset)
+                self.Damage_counter = 0
+                self.Broken_state = False
+                print(f"Rig repaired\n"
+                      f"Damage counter: {self.Damage_counter}\n"
+                      f"Broken state: {self.Broken_state}\n")
+                return
+        print(f"requires a CryptoToken to repair rig")
 
-    def upgrade(self, upgrade):
-        hardware_patch = upgrade + self.UpgradeLevel
-        print(f"Rig has been upgraded with {hardware_patch} hardware patch")
-        return hardware_patch
+    def upgrade(self, hacker):
+        for asset in hacker.Inventory:
+            if asset.AssetName == "Hardware Patch":
+                hacker.Inventory.remove(asset)
+                self.UpgradeLevel += 1
+                print(f"Rig Upgraded")
+                return
 
-    def data_spike(self, damaged):
-        if damaged <= 0:
+            print("No Hardware Patch found in hacker inventory")
+
+    def damaged(self, damage):
+        if damage <= 0:
             return False
 
-        self.DamageCounter += damaged
-        print(f"Rig has been hit with {damaged} Data Spike!!!\n"
-            f"Damaged counter increased to {self.DamageCounter}")
+        if self.UpgradeLevel == 0:
+            self.DamageCounter += damage
+            print(f"Rig has been hit with {damage} Data Spike!!!\n"
+                f"Damaged counter increased to {self.DamageCounter}")
+            if self.DamageCounter == 2 and self.UpgradeLevel == 0:
+                self.BrokenState = True
+                print(f"Rig is broken")
+                return
 
-        if self.DamageCounter >= 2 and self.UpgradeLevel == 0:
-            self.BrokenState = True
-            print(f"Rig is broken")
+            if self.UpgradeLevel >= 1:
+                print(f"Rig level is {self.UpgradeLevel}")
+                self.DamageCounter += damage
 
         return self.BrokenState
 
