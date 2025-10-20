@@ -18,17 +18,22 @@ class Hacker:
         self.__crypto_token = 1
 
     def retrieve_assets(self, asset):
-        if isinstance(asset, Asset): # Checks to see if it's an asset
-            self.Inventory.append(asset)
-            print(f"asset added: {asset}")
-        else:
-            print(f"must be an asset")
+        if not isinstance(asset, Asset): # Checks to see if it's an asset
+            print("not an asset")
+            return
+        self.Inventory.append(asset)
+        print(f"{asset}")
 
-    def acquire_rig(self):
-        if self.CryptoToken >= 1:
+    def acquire_rig(self, rig):
+        if not isinstance(rig, Rig):
+            print(f"acquire rig with CryptoToken")
+            return
+
+        elif self.CryptoToken >= 1:
             self.CryptoToken -= 1
-            self.rig = Rig()
+            self.rig = rig
             print(f"Rig activation")
+            print(f"CryptoToken remaining: {self.CryptoToken}")
 
     def trace_level(self):
         if self.TraceLevel == 5:
@@ -45,41 +50,48 @@ class Hacker:
     def launch_data_spike(self, spike):
         if spike:
             self.rig.DataSpike -= spike
+            self.rig.DamageCounter += spike
             print(f"amount of data spike remaining {self.rig.DataSpike}")
 
-    def extract_asset(self, driver):
-        if not Rig.BrokenState:
-            print("Rig is not broken cannot extract")
+            if spike >= 2:
+                self.rig.BrokenState == True
 
-        elif Rig.BrokenState:
-            print("extracting rig for asset")
+    def extract_asset(self):
+        if not self.rig.BrokenState:
+            print(f"rig not broken, cannot be extracted")
 
-            self.Rig.RemovableDrive -= driver
-            print(f"amount of removable driver: {self.Rig.RemovableDrive}")
+        elif self.rig.BrokenState:
+            self.rig.RemovableDrive -= 1
+            print("rig is broken, using removable drive to extract ")
+            print(f"remaining removable drive: {self.rig.RemovableDrive}")
 
-            extract = self.Rig.Storage[0]
-            self.Rig.Storage.remove(extract)
-            self.retrieve_assets(extract)
-        return extract
+            for asset in self.rig.Storage:
+                print(f"transferring {asset} from rig storage")
 
-
-
-
-
-    def encrypt_assets(self, driver):
+    def encrypt_assets(self, asset):
         pass
 
+    def upgrade_rig(self):
+        if self.rig:
+            for asset in self.Inventory:
+                if asset.AssetName == "Hardware Patch":
+                    self.Inventory.remove(asset)
 
+                    self.rig.UpgradeLevel += 1
+                    self.rig.Storage.extend("")
+                    print(f"Rig level increased to {self.rig.UpgradeLevel}\n"
+                          f"Storage: increased")
+                    return
 
+    def search_inventory(self, asset_name):
+        for asset in self.Inventory:
+            if asset.AssetName == asset_name:
+                print(f"Asset found: {asset.AssetName}")
+                return asset
+        print(f"asset not found in hacker inventory: {asset_name}.")
 
-
-    def upgrade_rig(self, hardware_patch):
-        pass
-
-
-    def store(self):
-        pass
-
+    def __str__(self):
+        return f"{self.Name} {self.rig.Name} {self.TraceLevel} {self.Inventory}"
 
     def get_name(self):
         return self.__name

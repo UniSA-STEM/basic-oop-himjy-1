@@ -11,40 +11,32 @@ from Hacker import Hacker
 from Rig import Rig
 from Asset import Asset
 
-Hacker = Hacker()
-
-a1 = Asset("CryptoToken", "Used to acquire or repair rigs")
-a2 = Asset("SecretFile", "Top secret")
-
-assets = [a1, a2]
-Hacker.retrieve_assets(assets[1])
-
-
+hacker = Hacker()
 rig = Rig()
-rig.Storage = a1
+
+CryptoToken = Asset("CryptoToken", "Used to acquire or repair rigs")
+DataSpike = Asset("Data Spike", "Used in battle")
+RemovableDrive = Asset("Removable Drive", "Found in rigs and used for extrac�on.")
+SecurityChip = Asset("Security Chip", "Used to encrypt or decrypt assets")
+HardwarePatch = Asset("Hardware Patch", "Used to upgrade rigs.")
 
 
-Hacker.acquire_rig()
-Hacker.launch_data_spike(5)
-rig.data_spike(2)
+assets = [CryptoToken, DataSpike, RemovableDrive, SecurityChip, HardwarePatch]
+hacker.retrieve_assets(CryptoToken)
+hacker.retrieve_assets(DataSpike)
+
+rig.storage(DataSpike)
 
 
 
-#    Hacker.launch_data_spike()
- #   Hacker.launch_data_spike()
-  #  Hacker.launch_data_spike()
-   # Hacker.launch_data_spike()
-#Hacker.trace_level()
 
-#rig = Rig()
-#rig.repaired(0)
-#rig.upgraded(1)
-#rig.data_spike(3)
-#rig = Rig()
-#print(rig)
+hacker.acquire_rig(rig)
+hacker.launch_data_spike(2)
+hacker.extract_asset()
+hacker.upgrade_rig(1)
+hacker.search_inventory("CryptoToken")
+hacker.search_inventory("Data Spike")
+print(hacker)
+hacker.upgrade_rig()
 
-
-#print(a)
-#a.crypto_token()
-#a.data_spike()
 

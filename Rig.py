@@ -20,7 +20,11 @@ class Rig():
         self.__upgrade_level = 0
 
     def storage(self, asset):
-        self.Storage.append(asset)
+        if not isinstance(asset, Asset): # Checks to see if it's an asset
+            print("not an asset")
+            return
+        self.__storage.append(asset)
+        print(f"{asset}")
 
     def repair(self):
         if self.DamageCounter == 0 and self.BrokenState == False:
@@ -67,6 +71,9 @@ class Rig():
     def set_damage_counter(self, damage_counter):
         self.__damage_counter = damage_counter
 
+        if damage_counter ==2:
+            self.BrokenState = True
+
     def get_broken_state(self):
         return self.__broken_state
 
@@ -100,15 +107,10 @@ class Rig():
     def get_storage(self):
         return self.__storage
 
-    def set_storage(self, asset):
-        self.__storage.append(asset)
-
-
-
     Name = property(get_name)
     DamageCounter = property(get_damage_counter, set_damage_counter)
     BrokenState = property(get_broken_state, set_broken_state)
-    Storage = property(get_storage, set_storage)
+    Storage = property(get_storage)
     DataSpike = property(get_data_spike, set_data_spike)
     RemovableDrive = property(get_removable_drive, set_removable_drive)
     UpgradeLevel = property(get_upgrade_level, set_upgrade_level)
