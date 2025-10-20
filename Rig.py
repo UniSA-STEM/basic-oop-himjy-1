@@ -52,7 +52,7 @@ class Rig:
 
     def damaged(self, damage):
         if damage <= 0:
-            return False
+            return
 
         self.DamageCounter += damage
         print(f"Rig has been hit with {damage} Data Spike!!!\n"
@@ -81,6 +81,23 @@ class Rig:
         print(f"{generated_asset}")
         return
 
+    def transfer(self, asset, decrypt):
+        for item in self.Storage:
+            if item.AssetName == "Security Chip":
+                self.Storage.remove(item)
+
+        for asset in self.Storage:
+            if asset.Encrypted and not decrypt:
+                print(f"cannot be transferred until decrypted.")
+                return
+
+            elif asset.Encrypted and decrypt:
+                asset.Encrypted = True
+                print(f"{asset.AssetName} has been encrypted.")
+
+    def rig_condition(self):
+        pass
+
 
     def __str__(self):
         if self.UpgradeLevel >= 2:
@@ -97,7 +114,7 @@ class Rig:
     def set_damage_counter(self, damage_counter):
         self.__damage_counter = damage_counter
 
-        if damage_counter ==2:
+        if damage_counter == 2:
             self.BrokenState = True
 
     def get_broken_state(self):

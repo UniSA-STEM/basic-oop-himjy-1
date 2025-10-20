@@ -44,10 +44,11 @@ hacker.retrieve_assets(HardwarePatch)
 
 #hacker.trace_level("CryptoToken")
 #print(hacker)
-
+rig.storage(SecurityChip)
 rig.storage(DataSpike)
 rig.storage(CryptoToken)
 #rig.repair("CryptoToken")
 rig.upgrade(hacker)
-rig.damaged(4)
+rig.damaged(3)
 rig.generate_asset(assets)
+rig.transfer("DataSpike", "SecurityChip")
