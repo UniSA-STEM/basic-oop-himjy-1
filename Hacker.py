@@ -1,6 +1,6 @@
 """
 File: Hacker.py
-Description: Hacker class
+Description: Hacker class representing a hacker who manages rigs and digital assets.
 Author: Jamie Him
 ID: 110375225
 Username: Himjy003
@@ -11,6 +11,14 @@ from Asset import Asset
 
 class Hacker:
     def __init__(self):
+        """
+        Attributes:
+            __name (str): The hacker's name.
+            __rig (Rig or int): The hacker's rig. Defaults to 0 (no rig).
+            __trace_level (int): Current trace level of the hacker.
+            __inventory (list): List of Asset objects owned by the hacker.
+            __crypto_token (int): Number of crypto tokens available for acquiring rigs.
+        """
         self.__name = 'Hacker'
         self.__rig = 0
         self.__trace_level = 0
@@ -18,59 +26,103 @@ class Hacker:
         self.__crypto_token = 1
 
     def retrieve_assets(self, asset):
+        """
+        Adds an Asset to the hacker's inventory if valid.
+        asset (Asset): The asset to retrieve.
+
+        Prints:
+            Confirmation of retrieval or error if the object is not an Asset.
+        """
+
         if not isinstance(asset, Asset): # Checks to see if it's an asset
             print("not an asset")
             return
-        self.Inventory.append(asset)
+        self.inventory.append(asset)
         print(f"{asset}")
 
     def acquire_rig(self, rig):
+        """
+        Allows the hacker to acquire a rig if they have sufficient CryptoTokens.
+        rig (Rig): The rig to acquire.
+
+        Prints:
+            Confirmation of rig activation and remaining crypto tokens.
+        """
+
         if not isinstance(rig, Rig):
             print(f"acquire rig with CryptoToken")
             return
 
-        elif self.CryptoToken >= 1:
-            self.CryptoToken -= 1
+        elif self.crypto_token >= 1:
+            self.crypto_token -= 1
             self.rig = rig
             print(f"Rig activation")
-            print(f"CryptoToken remaining: {self.CryptoToken}")
+            print(f"CryptoToken remaining: {self.crypto_token}")
 
     def trace_level(self, asset):
-        if self.Inventory.append(asset):
+        """
+        Increases trace level by 1 when an asset is added to the inventory.
+        Alerts the hacker if trace level reaches 5.
+
+        Prints:
+            Current trace level or exposure warning.
+        """
+
+        if self.inventory.append(asset):
             self.__trace_level += 1
-            print(self.TraceLevel)
-        if self.TraceLevel == 5:
+            print(self.hacker_trace_level)
+        if self.hacker_trace_level == 5:
             print(f"EXPOSED, reduce your trace level")
 
     def launch_data_spike(self, spike):
+        """
+        Launches a data spike using the hacker's rig, affecting its damage counter.
+
+        Prints:
+            Remaining data spike and sets rig as broken if spike >= 2.
+        """
+
         if spike:
-            self.rig.DataSpike -= spike
-            self.rig.DamageCounter += spike
-            print(f"amount of data spike remaining {self.rig.DataSpike}")
+            self.rig.data_spike -= spike
+            self.rig.damage_counter += spike
+            print(f"amount of data spike remaining {self.rig.data_spike}")
 
             if spike >= 2:
-                self.rig.BrokenState = True
+                self.rig.broken = True
 
     def extract_asset(self):
-        if not self.rig.BrokenState:
+        """
+        Extracts assets from the rig if the rig is broken.
+        Reduces the number of removable drives.
+
+        Prints:
+            Status messages and assets being transferred.
+        """
+        if not self.rig.broken:
             print(f"rig not broken, cannot be extracted")
 
-        elif self.rig.BrokenState:
-            self.rig.RemovableDrive -= 1
+        elif self.rig.broken:
+            self.rig.removable_drive -= 1
             print("rig is broken, using removable drive to extract ")
-            print(f"remaining removable drive: {self.rig.RemovableDrive}")
+            print(f"remaining removable drive: {self.rig.removable_drive}")
 
-            for asset in self.rig.Storage:
+            for asset in self.rig.rig_storage:
                 print(f"transferring {asset} from rig storage")
 
     def encrypt_assets(self, asset_name):
-        for item in self.Inventory:
-            if item.AssetName == "Security Chip":
-                self.Inventory.remove(item)
+        """
+        Encrypts a specified asset in the inventory if a 'Security Chip' is in inventory.
 
-                for asset in self.Inventory:
-                    if asset.AssetName == asset_name:
-                        asset.Encrypted = True
+        Prints:
+            Confirmation messages or error if asset/security chip not found.
+        """
+        for item in self.inventory:
+            if item.asset_name == "Security Chip":
+                self.inventory.remove(item)
+
+                for asset in self.inventory:
+                    if asset.asset_name == asset_name:
+                        asset.encrypted = True
                         print(f"{asset_name} Encrypted")
                         return
 
@@ -79,39 +131,60 @@ class Hacker:
         print("requires security chip")
 
     def upgrade_rig(self):
-        if self.rig:
-            for asset in self.Inventory:
-                if asset.AssetName == "Hardware Patch":
-                    self.Inventory.remove(asset)
+        """
+        Upgrades the hacker's rig if a 'Hardware Patch' is present in inventory.
+        Increases rig level and storage.
 
-                    self.rig.UpgradeLevel += 1
-                    self.rig.Storage.extend("")
-                    print(f"Consumed: {asset.AssetName}")
-                    print(f"Rig level: {self.rig.UpgradeLevel}\n"
+        Prints:
+            Confirmation messages or error if hardware patch not available.
+        """
+        if self.rig:
+            for asset in self.inventory:
+                if asset.asset_name == "Hardware Patch":
+                    self.inventory.remove(asset)
+
+                    self.rig.upgrade_level += 1
+                    self.rig.rig_storage.extend("")
+                    print(f"Consumed: {asset.asset_name}")
+                    print(f"Rig level: {self.rig.upgrade_level}\n"
                           f"Storage increased")
                     return
             print(f"requires hardware patch to upgrade the rig")
 
     def search_inventory(self, asset_name):
-        for asset in self.Inventory:
-            if asset.AssetName == asset_name:
-                print(f"Asset found: {asset.AssetName}")
+        """
+        Searches for an asset by name in the hacker's inventory.
+        Returns:
+            Asset if found, else Acquire a rig.
+
+        Prints:
+            Status of search results.
+        """
+        for asset in self.inventory:
+            if asset.asset_name == asset_name:
+                print(f"Asset found: {asset.asset_name}")
                 return asset
         print(f"asset not found in hacker inventory: {asset_name}.")
 
     def __str__(self):
+        """
+        Returns a formatted string representation of the hacker.
+
+        Includes:
+            Hacker's name, rig name, trace level, and inventory.
+        """
         if self.rig:
-            rig_name = self.rig.Name
+            rig_name = self.rig.rig.name
         else:
             rig_name = "Acquire a rig"
 
         inventory_str = []
-        for asset in self.Inventory:
+        for asset in self.inventory:
             inventory_str.append(str(asset))
 
-        return (f"Name: {self.Name}\n"
+        return (f"Name: {self.hacker_name}\n"
                 f"Rig name: {rig_name}\n"
-                f"Trace level: {self.TraceLevel}\n"
+                f"Trace level: {self.trace_level()}\n"
                 f"Inventory: {inventory_str}")
 
     def get_name(self):
@@ -142,8 +215,8 @@ class Hacker:
         return self.__inventory
 
     # Properties
-    Name = property(get_name)
-    CryptoToken = property(get_crypto_token, set_crypto_token)
-    Rig = property(get_rig)
-    TraceLevel = property(get_trace_level, set_trace_level)
-    Inventory = property(get_inventory)
+    hacker_name = property(get_name)
+    crypto_token = property(get_crypto_token, set_crypto_token)
+    hacker_rig = property(get_rig)
+    hacker_trace_level = property(get_trace_level, set_trace_level)
+    inventory = property(get_inventory)

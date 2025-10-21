@@ -26,10 +26,10 @@ class Asset:
 
     # Returns a formatted string containing asset details.
     def __str__(self):
-        if self.Encrypted:
-            return f"{self.AssetName}: {self.Description} Encrypted"
+        if self.encrypted:
+            return f"{self.asset_name}: {self.description} Encrypted"
         else:
-            return f"{self.AssetName}: {self.Description}"
+            return f"{self.asset_name}: {self.description}"
 
     # Getters for encapsulated data
     def get_name(self):
@@ -57,8 +57,8 @@ class Asset:
         self.__encrypted = encrypted
 
     # Properties to access private attributes
-    AssetName = property(get_name)
-    Description = property(get_description)
-    Encrypted = property(get_encrypted, set_encrypted)
+    asset_name = property(get_name)
+    description = property(get_description)
+    encrypted = property(get_encrypted, set_encrypted)
 
 
