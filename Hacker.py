@@ -67,12 +67,14 @@ class Hacker:
         Prints:
             Current trace level or exposure warning.
         """
+        self.inventory.append(asset)
+        self.__trace_level += 1
+        print(f"Trace level: {self.hacker_trace_level}")
 
-        if self.inventory.append(asset):
-            self.__trace_level += 1
-            print(self.hacker_trace_level)
         if self.hacker_trace_level == 5:
             print(f"EXPOSED, reduce your trace level")
+
+        return self.hacker_trace_level
 
     def launch_data_spike(self, spike):
         """
@@ -83,6 +85,7 @@ class Hacker:
         """
 
         if spike:
+            self.hacker_trace_level += 1
             self.rig.data_spike -= spike
             self.rig.damage_counter += spike
             print(f"amount of data spike remaining {self.rig.data_spike}")

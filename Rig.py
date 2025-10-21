@@ -109,7 +109,7 @@ class Rig:
         return self.broken
 
 
-    def generate_asset(self, asset):
+    def generate_asset(self):
         """
         Generates a random asset and adds it to the rig storage.
 
