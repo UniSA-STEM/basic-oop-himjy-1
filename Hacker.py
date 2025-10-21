@@ -100,7 +100,7 @@ class Hacker:
         print(f"asset not found in hacker inventory: {asset_name}.")
 
     def __str__(self):
-        if self.Rig:
+        if self.rig:
             rig_name = self.rig.Name
         else:
             rig_name = "Acquire a rig"

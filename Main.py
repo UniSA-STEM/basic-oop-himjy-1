@@ -48,6 +48,7 @@ hacker.retrieve_assets(SecurityChip)
 #rig.repair("CyptoToken")
 #rig.upgrade(hacker)
 hacker.encrypt_assets("CryptoToken")
+hacker.trace_level(1)
 
 hacker.retrieve_assets(CryptoToken)
 rig.storage(SecurityChip)
